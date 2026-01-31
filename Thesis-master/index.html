@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog - Share your thoughts with the world">
+    <title>Blog - Share Your Thoughts</title>
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font for Dyslexia-friendly mode -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Skip Navigation Link for Accessibility -->
+    <a href="#main-content" class="sr-only" style="position:absolute;top:-40px;left:0;background:#000;color:#fff;padding:8px;z-index:100;">Skip to main content</a>
+    
+    <div class="app-content">
+        <!-- Navigation -->
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <a href="index.html" class="logo" data-i18n="Blog">Blog</a>
+                <button class="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link active" data-i18n="Home">Home</a></li>
+                    <li><a href="journal.html" class="nav-link" data-i18n="Blog">Blog</a></li>
+                    <li class="guest-only">
+                        <a href="auth.html" class="nav-link" data-i18n="Login">Login</a>
+                    </li>
+                    <li class="auth-only username-display">
+                        <span class="nav-link username" id="navUsername"></span>
+                    </li>
+                    <li class="auth-only">
+                        <a href="#" class="nav-link" id="logoutBtn" data-i18n="Logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Network Status Indicator -->
+        <div id="network-indicator" class="network-indicator" role="status" aria-live="polite">
+            <span class="network-icon"></span>
+            <span class="network-text"></span>
+        </div>
+
+        <!-- Hero Section -->
+        <header style="background:linear-gradient(135deg, #4a6fa5 0%, #6b8cbe 100%);color:white;padding:80px 20px;text-align:center;">
+            <div class="container">
+                <h1 style="font-size:3rem;margin-bottom:20px;" data-i18n="Welcome to Blog">Welcome to Blog</h1>
+                <p style="font-size:1.25rem;max-width:600px;margin:0 auto 40px;opacity:0.9;" data-i18n="Share your stories, connect with writers, and discover new perspectives">Share your stories, connect with writers, and discover new perspectives</p>
+                <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+                    <a href="#" id="getStartedBtn" class="btn btn-lg" style="background:white;color:#4a6fa5;border:none;" data-i18n="Get Started">Get Started</a>
+                </div>
+        </header>
+
+        <!-- Features Section -->
+        <section style="padding:80px 20px;background:#f8f9fa;">
+            <div class="container">
+                <h2 style="text-align:center;margin-bottom:50px;" data-i18n="Features">Features</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;">
+                    <!-- Feature 1 -->
+                    <div class="card" style="padding:30px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:20px;">📝</div>
+                        <h3 data-i18n="Easy Writing">Easy Writing</h3>
+                        <p style="color:#666;" data-i18n="Create and manage your journals with our intuitive editor">Create and manage your journals with our intuitive editor</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="card" style="padding:30px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:20px;">🌐</div>
+                        <h3 data-i18n="Multi-language Support">Multi-language Support</h3>
+                        <p style="color:#666;" data-i18n="Translate content and support RTL languages like Arabic">Translate content and support RTL languages like Arabic</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="card" style="padding:30px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:20px;">♿</div>
+                        <h3 data-i18n="Accessibility First">Accessibility First</h3>
+                        <p style="color:#666;" data-i18n="Text-to-speech, color blind mode, and dyslexia-friendly font">Text-to-speech, color blind mode, and dyslexia-friendly font</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="card" style="padding:30px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:20px;">👆</div>
+                        <h3 data-i18n="Biometric Login">Biometric Login</h3>
+                        <p style="color:#666;" data-i18n="Secure fingerprint/face recognition login using WebAuthn">Secure fingerprint/face recognition login using WebAuthn</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="card" style="padding:30px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:20px;">💾</div>
+                        <h3 data-i18n="Auto-Save Drafts">Auto-Save Drafts</h3>
+                        <p style="color:#666;" data-i18n="Never lose your work with automatic draft saving">Never lose your work with automatic draft saving</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="card" style="padding:30px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:20px;">📊</div>
+                        <h3 data-i18n="Activity Tracking">Activity Tracking</h3>
+                        <p style="color:#666;" data-i18n="Track your time spent reading and writing">Track your time spent reading and writing</p>
+                    </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section style="padding:80px 20px;">
+            <div class="container">
+                <h2 style="text-align:center;margin-bottom:50px;" data-i18n="How It Works">How It Works</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px;max-width:900px;margin:0 auto;">
+                    <div style="text-align:center;">
+                        <div style="width:60px;height:60px;background:#4a6fa5;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:bold;margin:0 auto 20px;">1</div>
+                        <h3 data-i18n="Create Account">Create Account</h3>
+                        <p style="color:#666;" data-i18n="Sign up with email, Google, or go anonymous">Sign up with email, Google, or go anonymous</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="width:60px;height:60px;background:#4a6fa5;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:bold;margin:0 auto 20px;">2</div>
+                        <h3 data-i18n="Write Blog">Write Blog</h3>
+                        <p style="color:#666;" data-i18n="Share your thoughts with our easy-to-use editor">Share your thoughts with our easy-to-use editor</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="width:60px;height:60px;background:#4a6fa5;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:bold;margin:0 auto 20px;">3</div>
+                        <h3 data-i18n="Connect">Connect</h3>
+                        <p style="color:#666;" data-i18n="Engage with other writers and readers">Engage with other writers and readers</p>
+                    </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="guest-only" style="background:#f8f9fa;padding:60px 20px;text-align:center;">
+            <div class="container">
+                <h2 style="margin-bottom:20px;" data-i18n="Ready to Start Writing?">Ready to Start Writing?</h2>
+                <p style="color:#666;margin-bottom:30px;max-width:500px;margin-left:auto;margin-right:auto;" data-i18n="Join our community of writers and share your story with the world">Join our community of writers and share your story with the world</p>
+                <a href="auth.html#signup" class="btn btn-primary btn-lg" data-i18n="Create Free Account">Create Free Account</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align:center;padding:40px 20px;color:#666;background:#343a40;color:white;">
+            <div class="container">
+                <p class="mb-2" data-i18n="© 2024 Journal/Blog. All rights reserved.">© 2024 Journal/Blog. All rights reserved.</p>
+                <p style="font-size:0.875rem;opacity:0.8;" data-i18n="Built with HTML, CSS, Vanilla JavaScript, and Firebase">Built with HTML, CSS, Vanilla JavaScript, and Firebase</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- JavaScript -->
+    <script type="module">
+        import { initAuth, logout, initAuthState, initAuthUI, addAuthStateListener } from './js/auth.js';
+        import { initAccessibility } from './js/accessibility.js';
+        import { initNetworkStatus } from './js/network.js';
+        
+        // Initialize UI immediately from localStorage (prevents flickering)
+        initAuthUI();
+        
+        // Initialize all modules
+        initAuth();
+        initAccessibility();
+        initNetworkStatus();
+
+        // Apply saved language translation after accessibility module is initialized
+        setTimeout(() => {
+            const saved = localStorage.getItem('accessibility_preferences');
+            if (saved) {
+                const preferences = JSON.parse(saved);
+                if (preferences.currentLanguage && preferences.currentLanguage !== 'en') {
+                    if (window.translatePage) {
+                        window.translatePage(preferences.currentLanguage);
+                    }
+                }
+            }
+        }, 100);
+
+        // Initialize centralized auth state management (this sets up the Firebase listener)
+        initAuthState();
+
+        // Listen for auth state changes - the navbar UI is now handled by auth.js
+        addAuthStateListener((user) => {
+            console.log('Auth state changed:', user ? 'logged in' : 'logged out');
+        });
+        
+        // Make logout function globally available
+        window.logout = logout;
+
+        // Setup logout button
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await logout();
+            });
+        }
+
+        // Handle Get Started button click
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        if (getStartedBtn) {
+            getStartedBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                if (isLoggedIn) {
+                    window.location.href = 'journal.html';
+                } else {
+                    window.location.href = 'auth.html#signup';
+                }
+            });
+        }
+
+        // Update Get Started button text based on auth state
+        function updateGetStartedButton() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const getStartedBtn = document.getElementById('getStartedBtn');
+
+            if (getStartedBtn) {
+                if (isLoggedIn) {
+                    getStartedBtn.textContent = 'Go to Journal';
+                } else {
+                    getStartedBtn.textContent = getStartedBtn.getAttribute('data-i18n') || 'Get Started';
+                }
+            }
+        }
+
+        // Update button on page load
+        updateGetStartedButton();
+
+        // Update button when auth state changes
+        addAuthStateListener((user) => {
+            updateGetStartedButton();
+        });
+
+        // Hamburger menu functionality
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburgerMenu && navLinks) {
+            hamburgerMenu.addEventListener('click', () => {
+                const isExpanded = hamburgerMenu.getAttribute('aria-expanded') === 'true';
+                hamburgerMenu.setAttribute('aria-expanded', !isExpanded);
+                hamburgerMenu.classList.toggle('active');
+                navLinks.classList.toggle('mobile-open');
+            });
+
+            // Close menu when clicking on a link
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    hamburgerMenu.setAttribute('aria-expanded', 'false');
+                    hamburgerMenu.classList.remove('active');
+                    navLinks.classList.remove('mobile-open');
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburgerMenu.setAttribute('aria-expanded', 'false');
+                    hamburgerMenu.classList.remove('active');
+                    navLinks.classList.remove('mobile-open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

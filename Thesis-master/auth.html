@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Journal/Blog - Sign in or create an account">
+    <title>Authentication - Journal/Blog</title>
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Font for Dyslexia-friendly mode (will be loaded dynamically) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Skip Navigation Link for Accessibility -->
+    <a href="#main-content" class="sr-only" style="position:absolute;top:-40px;left:0;background:#000;color:#fff;padding:8px;z-index:100;">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+                <a href="index.html" class="logo" data-i18n="Blog">Blog</a>
+            <button class="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link" data-i18n="Home">Home</a></li>
+                <li><a href="journal.html" class="nav-link" data-i18n="Blog">Blog</a></li>
+                <li class="guest-only">
+                    <a href="auth.html" class="nav-link" data-i18n="Login">Login</a>
+                </li>
+                <li class="auth-only username-display">
+                    <span class="nav-link username" id="navUsername"></span>
+                </li>
+                <li class="auth-only">
+                    <a href="#" class="nav-link" id="logoutBtn" data-i18n="Logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <div class="auth-container">
+            <div class="auth-card">
+                <!-- Login Section -->
+                <div class="auth-header" id="login-header">
+                    <h1 data-i18n="Welcome Back">Welcome Back</h1>
+                    <p data-i18n="Sign in to your account">Sign in to your account</p>
+                </div>
+                
+                <div class="auth-body">
+                    <!-- Error Message Display -->
+                    <div id="authError" class="message message-error" style="display:none;" role="alert"></div>
+                    
+                    <!-- Login Form -->
+                    <form id="loginForm" novalidate>
+                        <div class="form-group">
+                            <label for="loginEmail" class="form-label" data-i18n="Email Address">Email Address</label>
+                            <input type="email" id="loginEmail" class="form-control"
+                                   placeholder="Enter your email" required autocomplete="email"
+                                   aria-describedby="loginEmailHelp">
+                            <small id="loginEmailHelp" class="form-text" data-i18n="We'll never share your email">We'll never share your email</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword" class="form-label" data-i18n="Password">Password</label>
+                            <input type="password" id="loginPassword" class="form-control"
+                                   placeholder="Enter your password" required autocomplete="current-password">
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" id="rememberMe" class="form-check-input">
+                            <label for="rememberMe" class="form-check-label" data-i18n="Remember me">Remember me</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="loginBtn">
+                            <span data-i18n="Sign In">Sign In</span>
+                        </button>
+                    </form>
+                    
+                    <!-- Divider -->
+                    <div class="auth-divider">
+                        <span data-i18n="or">or</span>
+                    </div>
+                    
+                    <!-- Social Login Buttons -->
+                    <div class="social-buttons">
+                        <button type="button" class="btn btn-outline btn-block" id="googleBtn">
+                            <span aria-hidden="true">🔵</span>
+                            <span data-i18n="Continue with Google">Continue with Google</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-outline btn-block" id="biometricLogin">
+                            <span aria-hidden="true">👆</span>
+                            <span data-i18n="Fingerprint Login">Fingerprint Login</span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-secondary btn-block" id="guestMode">
+                            <span aria-hidden="true">👤</span>
+                            <span data-i18n="Continue as Guest">Continue as Guest</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Forgot Password Link -->
+                    <p class="text-center mt-3">
+                        <a href="#" data-i18n="Forgot your password?">Forgot your password?</a>
+                    </p>
+                    
+                    <!-- Sign Up Link -->
+                    <div class="auth-footer">
+                        <p class="mb-0">
+                            <span data-i18n="Don't have an account?">Don't have an account?</span>
+                            <a href="#signup" data-i18n="Sign up">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Signup Section -->
+                <div id="signup-header" style="display:none;">
+                    <div class="auth-header">
+                        <h1 data-i18n="Create Account">Create Account</h1>
+                        <p data-i18n="Join our community of writers">Join our community of writers</p>
+                    </div>
+                    
+                    <div class="auth-body">
+                        <!-- Signup Form -->
+                        <form id="signupForm" novalidate>
+                            <div class="form-group">
+                                <label for="signupName" class="form-label" data-i18n="Full Name *">Full Name *</label>
+                                <input type="text" id="signupName" class="form-control"
+                                       placeholder="Enter your full name" required autocomplete="name"
+                                       aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="signupEmail" class="form-label" data-i18n="Email Address">Email Address *</label>
+                                <input type="email" id="signupEmail" class="form-control"
+                                       placeholder="Enter your email" required autocomplete="email"
+                                       aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="signupPhone" class="form-label" data-i18n="Phone Number">Phone Number</label>
+                                <input type="tel" id="signupPhone" class="form-control"
+                                       placeholder="Enter your phone number" autocomplete="tel">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="signupPassword" class="form-label" data-i18n="Password">Password *</label>
+                                <input type="password" id="signupPassword" class="form-control"
+                                       placeholder="Create a password" required autocomplete="new-password"
+                                       aria-required="true"
+                                       aria-describedby="passwordStrength">
+                                <div id="passwordStrength" class="password-strength" aria-live="polite"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword" class="form-label" data-i18n="Confirm Password">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" class="form-control"
+                                       placeholder="Confirm your password" required autocomplete="new-password"
+                                       aria-required="true">
+                            </div>
+
+                            <!-- CAPTCHA -->
+                            <div class="form-group">
+                                <label for="captchaInput" class="form-label" data-i18n="CAPTCHA">CAPTCHA *</label>
+                                <div class="captcha-container">
+                                    <canvas id="captchaCanvas" class="captcha-canvas" width="250" height="50" aria-label="Visual CAPTCHA"></canvas>
+                                    <button type="button" class="captcha-refresh" id="refreshCaptcha" aria-label="Refresh CAPTCHA">
+                                        <span aria-hidden="true">🔄</span>
+                                    </button>
+                                    <button type="button" class="captcha-refresh" id="audioCaptcha" aria-label="Play audio CAPTCHA">
+                                        <span aria-hidden="true">🔊</span>
+                                    </button>
+                                </div>
+                                <input type="text" id="captchaInput" class="form-control"
+                                       placeholder="Enter the characters shown above" required
+                                       aria-required="true">
+                            </div>
+
+                            <!-- Terms Agreement -->
+                            <div class="form-group form-check">
+                                <input type="checkbox" id="agreeTerms" class="form-check-input" required>
+                                <label for="agreeTerms" class="form-check-label">
+                                    <span data-i18n="I agree to the">I agree to the</span>
+                                    <a href="#" data-i18n="Terms of Service">Terms of Service</a>
+                                    <span data-i18n="and">and</span>
+                                    <a href="#" data-i18n="Privacy Policy">Privacy Policy</a>
+                                </label>
+                            </div>
+
+                            <!-- Error Message Display -->
+                            <div id="signupError" class="message message-error" style="display:none;" role="alert"></div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="signupBtn">
+                                <span data-i18n="Create Account">Create Account</span>
+                            </button>
+                        </form>
+                        
+                        <!-- Back to Login Link -->
+                        <p class="text-center mt-3">
+                            <a href="#login" data-i18n="Already have an account? Sign in">Already have an account? Sign in</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer style="text-align:center;padding:20px;color:#666;background:#f8f9fa;">
+        <p class="mb-0">
+            <span data-i18n="© 2024 Journal/Blog. All rights reserved.">© 2024 Journal/Blog. All rights reserved.</span>
+        </p>
+    </footer>
+    
+    <!-- Accessibility Panel will be added by JavaScript -->
+    
+    <!-- JavaScript Modules -->
+    <script type="module">
+        import { 
+            initAuth, 
+            handleGoogleLogin, 
+            handleGuestLogin, 
+            handleBiometricLogin, 
+            logout,
+            initAuthState,
+            initAuthUI,
+            addAuthStateListener,
+            getCurrentUser
+        } from './js/auth.js';
+        import { initAccessibility } from './js/accessibility.js';
+        import { initNetworkStatus } from './js/network.js';
+        
+        // Initialize modules
+        initAuth();
+        initAccessibility();
+        initNetworkStatus();
+        
+        // Initialize centralized auth state management
+        initAuthState();
+        
+        // Initialize UI based on stored auth state
+        initAuthUI();
+        
+        // Listen for auth state changes - just update UI, don't redirect
+        addAuthStateListener((user) => {
+            console.log('Auth state changed:', user ? 'logged in' : 'logged out');
+        });
+        
+        // Make functions globally available
+        window.handleGoogleLogin = handleGoogleLogin;
+        window.handleGuestLogin = handleGuestLogin;
+        window.handleBiometricLogin = handleBiometricLogin;
+        window.logout = logout;
+
+        // Setup button click handlers
+        const googleBtn = document.getElementById('googleBtn');
+        if (googleBtn) {
+            googleBtn.addEventListener('click', handleGoogleLogin);
+        }
+
+        const guestBtn = document.getElementById('guestMode');
+        if (guestBtn) {
+            guestBtn.addEventListener('click', handleGuestLogin);
+        }
+        
+        const biometricBtn = document.getElementById('biometricLogin');
+        if (biometricBtn) {
+            biometricBtn.addEventListener('click', handleBiometricLogin);
+        }
+        
+        // Setup logout button
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await logout();
+            });
+        }
+        
+        // Toggle between login and signup
+        document.querySelectorAll('a[href="#signup"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('login-header').style.display = 'none';
+                document.querySelector('#loginForm').closest('.auth-body').style.display = 'none';
+                document.querySelector('.auth-footer').style.display = 'none';
+                document.getElementById('signup-header').style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('a[href="#login"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('signup-header').style.display = 'none';
+                document.getElementById('login-header').style.display = 'block';
+                document.querySelector('#loginForm').closest('.auth-body').style.display = 'block';
+                document.querySelector('.auth-footer').style.display = 'block';
+            });
+        });
+
+        // Hamburger menu functionality
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburgerMenu && navLinks) {
+            hamburgerMenu.addEventListener('click', () => {
+                const isExpanded = hamburgerMenu.getAttribute('aria-expanded') === 'true';
+                hamburgerMenu.setAttribute('aria-expanded', !isExpanded);
+                hamburgerMenu.classList.toggle('active');
+                navLinks.classList.toggle('mobile-open');
+            });
+
+            // Close menu when clicking on a link
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    hamburgerMenu.setAttribute('aria-expanded', 'false');
+                    hamburgerMenu.classList.remove('active');
+                    navLinks.classList.remove('mobile-open');
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburgerMenu.setAttribute('aria-expanded', 'false');
+                    hamburgerMenu.classList.remove('active');
+                    navLinks.classList.remove('mobile-open');
+                }
+            });
+        }
+    </script>
+    
+    <style>
+        /* Additional styles for auth page */
+        .auth-card {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .social-buttons .btn {
+            justify-content: center;
+        }
+        
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .captcha-refresh {
+            background: none;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .captcha-refresh:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</body>
+</html>
+
